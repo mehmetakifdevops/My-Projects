@@ -1,4 +1,4 @@
-Akif# Import Flask modules
+# Import Flask modules
 from flask import Flask, request, render_template
 from flaskext.mysql import MySQL
 import os
@@ -8,9 +8,10 @@ app = Flask(__name__)
 
 # Configure mysql database
 app.config['MYSQL_DATABASE_HOST'] = os.getenv('MYSQL_DATABASE_HOST')
-app.config['MYSQL_DATABASE_PASSWORD'] = os.getenv('MYSQL_DATABASE_PASSWORD')
-app.config['MYSQL_DATABASE_DB'] = os.getenv('MYSQL_DATABASE_DB')
-app.config['MYSQL_DATABASE_PORT'] = 3306
+app.config['MYSQL_DATABASE_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
+app.config['MYSQL_DATABASE_DB'] = os.getenv('MYSQL_DATABASE')
+app.config['MYSQL_DATABASE_USER'] = os.getenv('MYSQL_USER')
+#app.config['MYSQL_DATABASE_PORT'] = 3306
 mysql = MySQL()
 mysql.init_app(app) 
 connection = mysql.connect()
@@ -40,9 +41,9 @@ def find_records():
     if request.method == 'POST':
         keyword = request.form['username']
         persons = find_persons(keyword)
-        return render_template('index.html', persons=persons, keyword=keyword, show_result=True, developer_name='Akif')
+        return render_template('index.html', persons=persons, keyword=keyword, show_result=True, developer_name='Serdar')
     else:
-        return render_template('index.html', show_result=False, developer_name='Akif')
+        return render_template('index.html', show_result=False, developer_name='Serdar')
 
 
 # Add a statement to run the Flask application which can be reached from any host on port 80.

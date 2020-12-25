@@ -40,7 +40,7 @@ Resources:
     Type: AWS::EC2::LaunchTemplate
     Properties:
       LaunchTemplateData: 
-        ImageId: ami-0947d2ba12ee1ff75
+        ImageId: ami-04d29b6f966df1537
         InstanceType: t2.micro
         KeyName: deneme-kp
         SecurityGroupIds: 
@@ -60,12 +60,12 @@ Resources:
                 pip3 install flask
                 pip3 install flask_mysql
                 echo "${MyDBURI}" > /home/ec2-user/dbserver.endpoint
-                TOKEN="94eddca57871d6cbcb24babb5e0ff31f30226804"
-                FOLDER="https://$TOKEN@raw.githubusercontent.com/serdarcw/004-Phonebook-web-app-EU/master/"
-                curl -s --create-dirs -o "/home/ec2-user/templates/index.html" -L "$FOLDER"templates/index.html
-                curl -s --create-dirs -o "/home/ec2-user/templates/add-update.html" -L "$FOLDER"templates/add-update.html
-                curl -s --create-dirs -o "/home/ec2-user/templates/delete.html" -L "$FOLDER"templates/delete.html
-                curl -s --create-dirs -o "/home/ec2-user/app.py" -L "$FOLDER"phonebook-app.py
+                TOKEN="d2da4544d12f6b5973db26125ce2975ddb3a6b0e"
+                FOLDER="https://$TOKEN@raw.githubusercontent.com/mehmetakifdevops/calisma-repom/main/"
+                curl -s --create-dirs -o "/home/ec2-user/templates/index.html" -L "$FOLDER"004-phonebook/templates/index.html
+                curl -s --create-dirs -o "/home/ec2-user/templates/add-update.html" -L "$FOLDER"004-phonebook/templates/add-update.html
+                curl -s --create-dirs -o "/home/ec2-user/templates/delete.html" -L "$FOLDER"004-phonebook/templates/delete.html
+                curl -s --create-dirs -o "/home/ec2-user/app.py" -L "$FOLDER"004-phonebook/phonebook-app.py
                 python3 /home/ec2-user/app.py
               - MyDBURI: !GetAtt MyDatabaseServer.Endpoint.Address
 
@@ -87,12 +87,12 @@ Resources:
       SecurityGroups:
         - !GetAtt ALBSecurityGroup.GroupId
       Subnets:
-        - subnet-077c9758
-        - subnet-3246e63c
-        - subnet-3ccd235a
-        - subnet-8d8dbfb3
-        - subnet-c41ba589
-        - subnet-ed49bccc
+        - subnet-1e65912f
+        - subnet-23af352d
+        - subnet-27933e78
+        - subnet-6442ed45
+        - subnet-1df8587b
+        - subnet-10a5d55d
       Type: application
 
   ALBListener:
@@ -137,7 +137,7 @@ Resources:
       AllowMajorVersionUpgrade: false 
       AutoMinorVersionUpgrade: true
       BackupRetentionPeriod: 0
-      DBInstanceIdentifier: phonebook-app-db2
+      DBInstanceIdentifier: phonebook-app-db6
       DBName: phonebook
       DBSecurityGroups: 
         - !Ref MyDBSecurityGroup
@@ -145,7 +145,7 @@ Resources:
       DBInstanceClass: db.t2.micro #Required
       EngineVersion: 8.0.19
       MasterUsername: admin
-      MasterUserPassword: Serdar_1
+      MasterUserPassword: Akifdeneme_1
       MultiAZ: false
       Port: 3306
       PubliclyAccessible: true
@@ -157,3 +157,6 @@ Outputs:
       - http://${ALBAddress}
       - ALBAddress: !GetAtt ApplicationLoadBalancer.DNSName
     Description: Phonebook Application Load Balancer URL
+
+
+                

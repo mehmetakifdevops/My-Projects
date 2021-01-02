@@ -6,14 +6,14 @@ services:
     environment: 
       MYSQL_ROOT_PASSWORD: P123456p
       MYSQL_DATABASE: bookstore_db
-      MYSQL_USER: clarusway
-      MYSQL_PASSWORD: Clarusway_1
+      MYSQL_USER: mehmetakif
+      MYSQL_PASSWORD: Mehmetakif_1
     networks:
       - clarusnet
   
 
   my-app:
-    image: serdarcw/bookstore:latest
+    image: mehmetakifdocker/bookstore:latest
     restart: always
     depends_on:
       - database
